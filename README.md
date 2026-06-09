@@ -4,18 +4,66 @@
 
 |Variant|Logo|Wordmark|
 |---|---|---|
-|default|![logo-default](./logos/logo.svg)|![wordmark-default](./logos/logo-wordmark.svg)|
+|default|![logo-default](./logos/logo.svg)|![wordmark-default](./previews/wordmark.png)|
 |download|[svg](./logos/logo.svg), [png](./logos/logo.png)|[svg](./logos/logo-wordmark.svg), [png](./logos/logo-wordmark.png)|
-|black|![logo-black](./logos/logo--black.svg)|![wordmark-black](./logos/logo-wordmark--black.svg)|
+|black|![logo-black](./logos/logo--black.svg)|![wordmark-black](./previews/wordmark--black.png)|
 |download|[svg](./logos/logo--black.svg), [png](./logos/logo--black.png)|[svg](./logos/logo-wordmark--black.svg), [png](./logos/logo-wordmark--black.png)|
-|white|![logo-white](./logos/logo--white.svg)|![wordmark-white](./logos/logo-wordmark--white.svg)|
+|white|![logo-white](./logos/logo--white.svg)|![wordmark-white](./previews/wordmark--white.png)|
 |download|[svg](./logos/logo--white.svg), [png](./logos/logo--white.png)|[svg](./logos/logo-wordmark--white.svg), [png](./logos/logo-wordmark--white.png)|
 
-## Colors 
+### Notes
 
-|COLOR|NAME|HEX|CMYK|RGB|
+- **The square mark** follows a Swiss-graphic-design intent: the `ospo` lettermark is set in the lower-right of the square, the final `o` is deliberately cropped by the right edge, and the `p` descender sits flush to the bottom border. It is intended as a large, expressive brand mark — for very small or corner-masked contexts (favicons, app icons) prefer the wordmark or add clear space.
+- **`--black` / `--white` denote the *ink* (foreground) colour**, not the background. So `--black` is a black mark (on a white field for the square form) and `--white` is a white mark (on a black field). The mono SVGs use `fill="currentColor"`, so when inlined they can be re-coloured with the CSS `color` property; the standalone files and PNGs render with the colour shown above.
+- **Clear space & minimum size.** The wordmark assets are tightly cropped with no built-in padding, so the consumer controls spacing — keep clear space of at least the height of the `o` on all sides of the wordmark, and the width of one `o` around the square mark. Don't render the wordmark below ~120px wide or the square below ~24px; at smaller sizes use the [`o` monogram](./icons/favicon.svg).
+- **Use the vector (SVG) as the master.** PNGs are provided for convenience at a single size; scale from the SVG for any larger or high-DPI use.
+
+> Wordmark previews above are shown on a checkerboard so the black and white variants stay visible in both light and dark themes; the assets themselves have transparent backgrounds.
+
+## Icons
+
+Favicon, app and PWA icons live in [`icons/`](./icons). They are built from the **`o` monogram** rather than the full square mark, which is illegible at icon sizes.
+
+|Asset|File|Use|
+|---|---|---|
+|Favicon (SVG)|[favicon.svg](./icons/favicon.svg)|Modern browser tab icon|
+|Favicon (ICO)|[favicon.ico](./icons/favicon.ico)|Legacy tab icon (16 / 32 / 48)|
+|Apple touch|[apple-touch-icon.png](./icons/apple-touch-icon.png)|iOS home screen (180)|
+|PWA|[icon-192.png](./icons/icon-192.png), [icon-512.png](./icons/icon-512.png)|Android / PWA|
+|Maskable|[maskable-512.png](./icons/maskable-512.png)|Adaptive / maskable icon (safe-zone aware)|
+|Manifest|[site.webmanifest](./icons/site.webmanifest)|PWA manifest|
+
+## Social
+
+[`social/og-image.png`](./social/og-image.png) (1200×630) is the Open Graph / social share image — the white wordmark on the brand-red field. SVG source: [`og-image.svg`](./social/og-image.svg).
+
+## Colors
+
+### Brand red
+
+`Red 500` is the primary brand colour. The scale provides tints for backgrounds and accessible shades for text.
+
+|Colour|Name|HEX|RGB|Notes|
 |---|---|---|---|---|
-|![red](./palette/Color-Red.png)|Red|`#F2000C`|`0/100/95/5`|`rgb(242,0,12)`|
+|![red-100](./palette/red-100.png)|Red 100|`#FFE3E4`|`rgb(255,227,228)`|Subtle background wash|
+|![red-300](./palette/red-300.png)|Red 300|`#FF6A72`|`rgb(255,106,114)`|Tint / accent on dark|
+|![red-500](./palette/red-500.png)|Red 500|`#F2000C`|`rgb(242,0,12)`|**Primary brand.** CMYK `0/100/95/5`. Large text & UI only on white (4.4:1 — not AA for body text)|
+|![red-700](./palette/red-700.png)|Red 700|`#B80009`|`rgb(184,0,9)`|Accessible red for body text / links on white (6.9:1)|
+|![red-900](./palette/red-900.png)|Red 900|`#73000A`|`rgb(115,0,10)`|Deep red for active/pressed states|
+
+### Neutrals
+
+|Colour|Name|HEX|RGB|Notes|
+|---|---|---|---|---|
+|![white](./palette/white.png)|White|`#FFFFFF`|`rgb(255,255,255)`|Surfaces, reversed mark|
+|![grey-100](./palette/grey-100.png)|Grey 100|`#F5F5F5`|`rgb(245,245,245)`|Subtle background|
+|![grey-300](./palette/grey-300.png)|Grey 300|`#D4D4D4`|`rgb(212,212,212)`|Borders / dividers|
+|![grey-500](./palette/grey-500.png)|Grey 500|`#737373`|`rgb(115,115,115)`|Lightest grey passing AA body text on white (4.7:1)|
+|![grey-700](./palette/grey-700.png)|Grey 700|`#404040`|`rgb(64,64,64)`|Secondary text|
+|![grey-900](./palette/grey-900.png)|Grey 900|`#171717`|`rgb(23,23,23)`|Primary text / ink|
+|![black](./palette/black.png)|Black|`#000000`|`rgb(0,0,0)`|Mono mark, maximum contrast|
+
+> Contrast ratios are WCAG 2.1 against white. `Red 500` meets AA for large text and UI components (≥3:1) but not body text — use `Red 700` for red text on white.
 
 ## Legal
 
