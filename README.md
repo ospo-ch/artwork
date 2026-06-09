@@ -37,33 +37,59 @@ Favicon, app and PWA icons live in [`icons/`](./icons). They are built from the 
 
 [`social/og-image.png`](./social/og-image.png) (1200×630) is the Open Graph / social share image — the white wordmark on the brand-red field. SVG source: [`og-image.svg`](./social/og-image.svg).
 
+## Design tokens
+
+The palette is defined once in [`tokens/tokens.json`](./tokens/tokens.json) (W3C DTCG format) and compiled to [`tokens.css`](./tokens/tokens.css), [`tokens.scss`](./tokens/tokens.scss) and [`tokens.js`](./tokens/tokens.js) (with [`tokens.d.ts`](./tokens/tokens.d.ts) types). Regenerate the outputs, the colour tables below, and the manifest theme colour with:
+
+```sh
+node tokens/build.mjs
+```
+
+Logo SVGs and PNGs carry literal hex (you don't template artwork at runtime); if the brand colour changes, update `tokens.json` and re-export the affected marks.
+
 ## Colors
 
+<!-- BEGIN GENERATED COLORS (node tokens/build.mjs) -->
 ### Brand red
 
-`Red 500` is the primary brand colour. The scale provides tints for backgrounds and accessible shades for text.
+`color.red.500` is the primary brand colour. The scale provides tints for backgrounds and accessible shades for text.
 
-|Colour|Name|HEX|RGB|Notes|
+|Colour|Token|HEX|RGB|Notes|
 |---|---|---|---|---|
-|![red-100](./palette/red-100.png)|Red 100|`#FFE3E4`|`rgb(255,227,228)`|Subtle background wash|
-|![red-300](./palette/red-300.png)|Red 300|`#FF6A72`|`rgb(255,106,114)`|Tint / accent on dark|
-|![red-500](./palette/red-500.png)|Red 500|`#F2000C`|`rgb(242,0,12)`|**Primary brand.** CMYK `0/100/95/5`. Large text & UI only on white (4.4:1 — not AA for body text)|
-|![red-700](./palette/red-700.png)|Red 700|`#B80009`|`rgb(184,0,9)`|Accessible red for body text / links on white (6.9:1)|
-|![red-900](./palette/red-900.png)|Red 900|`#73000A`|`rgb(115,0,10)`|Deep red for active/pressed states|
+|![red-100](./palette/red-100.png)|`color.red.100`|`#FFE3E4`|`rgb(255, 227, 228)`|Subtle background wash|
+|![red-300](./palette/red-300.png)|`color.red.300`|`#FF6A72`|`rgb(255, 106, 114)`|Tint / accent on dark|
+|![red-500](./palette/red-500.png)|`color.red.500`|`#F2000C`|`rgb(242, 0, 12)`|Primary brand. CMYK 0/100/95/5. Large text & UI only on white (4.4:1 — not AA for body text)|
+|![red-700](./palette/red-700.png)|`color.red.700`|`#B80009`|`rgb(184, 0, 9)`|Accessible red for body text / links on white (6.9:1)|
+|![red-900](./palette/red-900.png)|`color.red.900`|`#73000A`|`rgb(115, 0, 10)`|Deep red for active / pressed states|
 
 ### Neutrals
 
-|Colour|Name|HEX|RGB|Notes|
+|Colour|Token|HEX|RGB|Notes|
 |---|---|---|---|---|
-|![white](./palette/white.png)|White|`#FFFFFF`|`rgb(255,255,255)`|Surfaces, reversed mark|
-|![grey-100](./palette/grey-100.png)|Grey 100|`#F5F5F5`|`rgb(245,245,245)`|Subtle background|
-|![grey-300](./palette/grey-300.png)|Grey 300|`#D4D4D4`|`rgb(212,212,212)`|Borders / dividers|
-|![grey-500](./palette/grey-500.png)|Grey 500|`#737373`|`rgb(115,115,115)`|Lightest grey passing AA body text on white (4.7:1)|
-|![grey-700](./palette/grey-700.png)|Grey 700|`#404040`|`rgb(64,64,64)`|Secondary text|
-|![grey-900](./palette/grey-900.png)|Grey 900|`#171717`|`rgb(23,23,23)`|Primary text / ink|
-|![black](./palette/black.png)|Black|`#000000`|`rgb(0,0,0)`|Mono mark, maximum contrast|
+|![grey-100](./palette/grey-100.png)|`color.grey.100`|`#F5F5F5`|`rgb(245, 245, 245)`|Subtle background|
+|![grey-300](./palette/grey-300.png)|`color.grey.300`|`#D4D4D4`|`rgb(212, 212, 212)`|Borders / dividers|
+|![grey-500](./palette/grey-500.png)|`color.grey.500`|`#737373`|`rgb(115, 115, 115)`|Lightest grey passing AA body text on white (4.7:1)|
+|![grey-700](./palette/grey-700.png)|`color.grey.700`|`#404040`|`rgb(64, 64, 64)`|Secondary text|
+|![grey-900](./palette/grey-900.png)|`color.grey.900`|`#171717`|`rgb(23, 23, 23)`|Primary text / ink|
+|![black](./palette/black.png)|`color.black`|`#000000`|`rgb(0, 0, 0)`|Mono mark, maximum contrast|
+|![white](./palette/white.png)|`color.white`|`#FFFFFF`|`rgb(255, 255, 255)`|Surfaces, reversed mark|
 
-> Contrast ratios are WCAG 2.1 against white. `Red 500` meets AA for large text and UI components (≥3:1) but not body text — use `Red 700` for red text on white.
+### Semantic tokens
+
+Aliases that map intent to a colour in the scale — prefer these in product code.
+
+|Colour|Token|Resolves to|HEX|Notes|
+|---|---|---|---|---|
+|![red-500](./palette/red-500.png)|`color.brand`|`color.red.500`|`#F2000C`|Primary brand colour|
+|![grey-900](./palette/grey-900.png)|`color.text`|`color.grey.900`|`#171717`|Primary text / ink|
+|![grey-700](./palette/grey-700.png)|`color.text-secondary`|`color.grey.700`|`#404040`|Secondary text|
+|![red-700](./palette/red-700.png)|`color.text-link`|`color.red.700`|`#B80009`|Links / red text on white (AA)|
+|![white](./palette/white.png)|`color.surface`|`color.white`|`#FFFFFF`|Default background|
+|![grey-100](./palette/grey-100.png)|`color.surface-muted`|`color.grey.100`|`#F5F5F5`|Muted background|
+|![grey-300](./palette/grey-300.png)|`color.border`|`color.grey.300`|`#D4D4D4`|Borders / dividers|
+
+> Contrast ratios are WCAG 2.1 against white. `color.red.500` meets AA for large text and UI components (≥3:1) but not body text — use `color.text-link` (red 700) for red text on white.
+<!-- END GENERATED COLORS -->
 
 ## Legal
 
